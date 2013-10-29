@@ -1,1 +1,1 @@
-exclude: [CNAME, Gemfile, Gemfile.lock, .gitignore]
+exclude: [CNAME, Gemfile, Gemfile.lock, .gitignore, README.md]
