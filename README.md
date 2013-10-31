@@ -4,7 +4,7 @@
 
 Elfstats code is written in Python programming language and can be installed either together with the other Python packages or completely separately in an own directory. Elfstats is built for Linux operating system (its compatibility with other POSIX-based OSes has not been tested yet) and can be installed either from source codes or from a set of RPM packages.
 
-This is an umbrella repository for the elfstats project development. It contains the sources of [elfstats.org](http://elfstats.org) web site (in its [gh-pages](https://github.com/dzzh/elfstats/tree/gh-pages) branch), a project's wiki and a general issue tracker. Also, it will eventually include all elfstats-related repositories as the submodules and build scenarios for all-in-one installation of the project.
+This is an umbrella repository for the elfstats project development. By now, it only  contains the sources of [elfstats.org](http://elfstats.org) web site (in its [gh-pages](https://github.com/dzzh/elfstats/tree/gh-pages) branch). Eventually, it will  include all elfstats-related repositories as the submodules and contain build scenarios for all-in-one elfstats installation.
 
 ##Components:
 
