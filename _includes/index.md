@@ -34,7 +34,7 @@ After the data is aggregated and saved, it can be used as the input source by ma
 
 To simplify elfstats deployment for the system engineers not familiar with Python and/or operating web servers with restricted access (e.g. not allowing to download required dependencies from the Internet), an optional [elfstats-env][] infrastructural repository is maintained. It contains a Python virtual environment set up to work with elfstats. It can be installed prior to the other elfstats components. However, you are free not to use it and install elfstats the way you want.
 
-The [elfstats][] repository is aimed to be the all-in-one umbrella repository for the project's development. In near future it will include all the repositories listed above as its submodules. Also, it contains [a project's wiki](https://github.com/dzzh/elfstats/wiki), [a general issue tracker](https://github.com/dzzh/elfstats/issues) to address the issues not related to the development of a particular component and the source codes for this web site. 
+The [elfstats][] repository is aimed to be the all-in-one umbrella repository for the project's development. So far it only contains the sources of this web site, but in near future it will include all the repositories listed above as its submodules and will contain build scenarios for all-in-one elfstats installation. 
 
 ##Okay, got it. What's next?
 
@@ -46,11 +46,11 @@ If you want to try elfstats, you need to install its components in the following
 
 The detailed installation instructions are provided in the readme files of the respective repositories. The readme's also contain basic configuration guides.
 
-[Elfstats wiki](https://github.com/dzzh/elfstats/wiki) will soon be extended with more detailed configuration and usage guides.
+You can also refer to [elfstatsd wiki](https://github.com/dzzh/elfstatsd/wiki) for configuration guide and report format specification and to [elfstats-munin wiki](https://github.com/dzzh/elfstats-munin/wiki) for the description of the available plugins.
 
 ##Support
 
-If you have troubles with deploying or configuring elfstats, refer to [wiki at GitHub](https://github.com/dzzh/elfstats/wiki). You may also [file an issue](https://github.com/dzzh/elfstats/issues) at the issue tracker or [contact a maintainer](mailto:zmicier.zaleznicenka@gmail.com) directly via email. Feel free to share your thoughts and suggestions to improve the project!
+If you have troubles with deploying or configuring elfstats, you may [file an issue](https://github.com/dzzh/elfstatsd/issues) desribing your problem at the issue tracker or [contact a maintainer](mailto:zmicier.zaleznicenka@gmail.com) directly via email. Feel free to share your thoughts and suggestions to improve the project!
 
 [elfstats]: https://github.com/dzzh/elfstats
 [elfstats-env]: https://github.com/dzzh/elfstats-env
