@@ -17,20 +17,11 @@
   </head>
   <body>
     <div class="wrapper">
-      <header>
-
+      <header>        
         <h1>Elfstats</h1>
-
-        <p>Flexible monitoring of web servers (Apache, Tomcat, Nginx) using access logs in Extended Log Format.</p>      
-        <br/>        
-        <p class="view">Elfstats &mdash; all-in-one umbrella repository (warning: not set up completely yet)</p>        
-        <ul>
-          <li><a href="https://github.com/dzzh/elfstats/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/dzzh/elfstats/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/dzzh/elfstats">View On <strong>GitHub</strong></a></li>
-        </ul>
-        <br/>
-        <p class="view">Elfstats-env &mdash; virtual environment and required dependencies (optional)
+        <p>Flexible monitoring of web servers (Apache, Tomcat, Varnish) using access logs in NCSA Common log format / Extended Log Format</p>                  
+        <br/>                
+        <p class="view">Elfstats-env &mdash; virtual environment and required dependencies (optional)</p>
         <ul>
           <li><a href="https://github.com/dzzh/elfstats-munin/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/dzzh/elfstats-munin/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -52,14 +43,14 @@
         </ul>        
       </header>
 
-      <section>
+      <section>        
         {% capture index %}{% include index.md %}{% endcapture %}
         {{ index | markdownify }}
       </section>
 
       <footer>        
         <p>Maintained by <a href="https://github.com/dzzh">Źmicier Žaleźničenka</a></p>        
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a><br/>Latest site update: {{ site.time | date: "%Y-%m-%d" }}</small></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a><br/>Latest site update: {{ site.time | date: "%Y-%m-%d" }}</p>
       </footer>
     </div>
 

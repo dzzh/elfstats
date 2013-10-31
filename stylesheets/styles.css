@@ -7,9 +7,20 @@ body {
   font-weight:300;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+  color:#222;
+  margin:0 0 10px -5px;
+  font-size:80px;
+
+}
+
+h2, h3, h4, h5, h6 {
   color:#222;
   margin:0 0 20px;
+}
+
+header p.view {
+  margin:0 0 10px;
 }
 
 p, ul, ol, table, pre, dl {
@@ -18,10 +29,6 @@ p, ul, ol, table, pre, dl {
 
 h1, h2, h3 {
   line-height:1.1;
-}
-
-h1 {
-  font-size:28px;
 }
 
 h2 {
@@ -230,7 +237,7 @@ footer {
   header ul, header p.view {
     position:static;
   }
-  
+ 
   pre, code {
     word-wrap:normal;
   }
