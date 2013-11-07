@@ -6,6 +6,19 @@ It is vitally important for web site administrators to constantly monitor the st
 
 Elfstats code is written in Python programming language and can be installed either together with the other Python packages or completely separately in an own directory. Elfstats works with Linux operating system (its compatibility with other POSIX-based OSes has not been tested yet) and can be installed either from the source codes or from a set of RPM packages.
 
+##Sample outputs
+
+A number of plugins generated with elfstats for [Munin](http://munin-monitoring.org) monitoring tool are shown in the gallery below. They show main, but not all the features of elfstats.
+
+{% gallery plugins %}
+images/elfstats-munin-calls.png:: Number of calls per request
+images/elfstats-munin-percentiles.png:: Request latency percentiles
+images/elfstats-munin-response-codes.png:: Response codes distrib.
+images/elfstats-munin-response-times-avg.png:: Avg. resp. time per request
+images/elfstats-munin-response-times-total.png:: Total resp. time per request
+images/elfstats-munin-total-records.png:: Number of skipped records
+{% endgallery %}
+
 ##Features
 
 * Ability to work with any [ELF-compatible](http://en.wikipedia.org/wiki/Extended_Log_Format) access log file after copying the format setting from the web server's configuration.

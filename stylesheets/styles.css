@@ -260,3 +260,38 @@ footer {
     color:#444;
   }
 }
+
+/*Gallery*/
+
+dl, dt, dd {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.gallery-caption {
+  font-size: 0.8em;
+  font-style: italic;
+  color: #666666;
+  margin-bottom: 1em;
+  padding: 0 10px;
+}
+
+img.imgborder, .gallery .gallery-icon img {
+  border: 1px solid #ddd;
+  padding: 6px;
+}
+
+.gallery .gallery-icon a:focus img, .gallery .gallery-icon a:hover img, .gallery .gallery-icon a:active img, a:hover img.imgborder {
+  background: #eee;
+  border-color: #bbb;
+}
+
+.gallery-item {
+    float: left;
+    margin: 5px;
+    text-align: center;
+}
