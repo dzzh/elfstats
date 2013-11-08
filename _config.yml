@@ -1,7 +1,0 @@
-exclude: [CNAME, Gemfile, Gemfile.lock, .gitignore, README.md]
-gallerytag:
-    dir: images
-    url: 
-    thumb_width: 140
-    thumb_height: 140
-    columns: 3

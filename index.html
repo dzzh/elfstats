@@ -1,6 +1,3 @@
----
----
-
 <!doctype html>
 <html>
   <head>
@@ -48,13 +45,135 @@
       </header>
 
       <section>        
-        {% capture index %}{% include index.md %}{% endcapture %}
-        {{ index | markdownify }}
+        
+        <h2 id='about'>About</h2>
+
+<p>It is vitally important for web site administrators to constantly monitor the state of their systems. One of the ways to do it is by using data contained in the access logs of web servers. There exist many very different commercial and open-source tools used to extract and represent these data nowadays (see e.g. <a href='http://www.apacheviewer.com'>Apache Log Viewer</a>, <a href='https://github.com/ClockworkNet/wtop'>wtop</a>, <a href='http://www.sawmill.net'>Sawmill</a>, <a href='http://logstash.net'>logstash</a>, <a href='http://loggly.com'>Loggly</a>). Many of such tools can effectively work with the data that is the same in all setups, like IP addresses or response codes, but they do not usually provide efficient ways to aggregate the information contained in the processed requests with fine granularity, as the requests structure differs per each deployed application.</p>
+
+<p><strong>Elfstats</strong> is a set of tools aimed not to replace all the available access log monitoring solutions (well, at least in coming ten years), but rather provide the system engineers with flexible aggregation and reporting of information contained in the requests processed by their servers. As it was said before, the requests differ per each application, thus elfstats has to be configured to track specific requests structure in advance. This is done by means of regular expressions that can be as generic or fine-grained as needed.</p>
+
+<p>Elfstats code is written in Python programming language and can be installed either together with the other Python packages or completely separately in an own directory. Elfstats works with Linux operating system (its compatibility with other POSIX-based OSes has not been tested yet) and can be installed either from the source codes or from a set of RPM packages.</p>
+
+<h2 id='sample_outputs'>Sample outputs</h2>
+
+<p>A number of plugins generated with elfstats for <a href='http://munin-monitoring.org'>Munin</a> monitoring tool are shown in the gallery below. They show main, but not all the features of elfstats.</p>
+<div class='gallery'>
+
+<dl class='gallery-item'>
+<dt class='gallery-icon'>
+<a class='gallery-link' href='/images/elfstats-munin-calls.png' rel='plugins ' title='Number of calls per request'><img class='thumbnail' height='140' src='/images/elfstats-munin-calls-thumb.png' width='140' />
+</a>
+</dt>
+<dd class='gallery-caption'>Number of calls per request</dd></dl>
+
+<dl class='gallery-item'>
+<dt class='gallery-icon'>
+<a class='gallery-link' href='/images/elfstats-munin-percentiles.png' rel='plugins ' title='Request latency percentiles'><img class='thumbnail' height='140' src='/images/elfstats-munin-percentiles-thumb.png' width='140' />
+</a>
+</dt>
+<dd class='gallery-caption'>Request latency percentiles</dd></dl>
+
+<dl class='gallery-item'>
+<dt class='gallery-icon'>
+<a class='gallery-link' href='/images/elfstats-munin-response-codes.png' rel='plugins ' title='Response codes distrib.'><img class='thumbnail' height='140' src='/images/elfstats-munin-response-codes-thumb.png' width='140' />
+</a>
+</dt>
+<dd class='gallery-caption'>Response codes distrib.</dd></dl>
+
+<br style='clear: both;' /><dl class='gallery-item'>
+<dt class='gallery-icon'>
+<a class='gallery-link' href='/images/elfstats-munin-response-times-avg.png' rel='plugins ' title='Avg. resp. time per request'><img class='thumbnail' height='140' src='/images/elfstats-munin-response-times-avg-thumb.png' width='140' />
+</a>
+</dt>
+<dd class='gallery-caption'>Avg. resp. time per request</dd></dl>
+
+<dl class='gallery-item'>
+<dt class='gallery-icon'>
+<a class='gallery-link' href='/images/elfstats-munin-response-times-total.png' rel='plugins ' title='Total resp. time per request'><img class='thumbnail' height='140' src='/images/elfstats-munin-response-times-total-thumb.png' width='140' />
+</a>
+</dt>
+<dd class='gallery-caption'>Total resp. time per request</dd></dl>
+
+<dl class='gallery-item'>
+<dt class='gallery-icon'>
+<a class='gallery-link' href='/images/elfstats-munin-total-records.png' rel='plugins ' title='Number of skipped records'><img class='thumbnail' height='140' src='/images/elfstats-munin-total-records-thumb.png' width='140' />
+</a>
+</dt>
+<dd class='gallery-caption'>Number of skipped records</dd></dl>
+
+<br style='clear: both;' /><br style='clear: both;' />
+
+</div>
+<h2 id='features'>Features</h2>
+
+<ul>
+<li>Ability to work with any <a href='http://en.wikipedia.org/wiki/Extended_Log_Format'>ELF-compatible</a> access log file after copying the format setting from the web server&#8217;s configuration.</li>
+
+<li>Ability to process several different log files simultaneously.</li>
+
+<li>Ability to work with in-place and time-based rotating log files.</li>
+
+<li>Adjustable time interval for data aggregation.</li>
+
+<li>Regex-based configuration of requests needed to be and not to be tracked.</li>
+
+<li>Combining the requests into groups and tracking them together.</li>
+
+<li>Regex-based extraction and aggregation of specific patterns occurring in the requests.</li>
+
+<li>Small codebase and clear architecture that allows to extend and change the functionality with ease.</li>
+
+<li>Free and open-source.</li>
+</ul>
+
+<h2 id='tracked_data'>Tracked data</h2>
+
+<ul>
+<li>The total number of requests and slow requests per each defined group.</li>
+
+<li>Response times statistics, aggregated separately per each request group. Such metrics as min/max/avg latencies and user-defined percentiles are reported.</li>
+
+<li>The number of responses per response code &#8211; in total and for each request group separately.</li>
+
+<li>For each user-specified pattern &#8211; the number of occurrences in total and the number of distinct items matching the pattern.</li>
+
+<li>The total number of log records processed by elfstats as well as the number of intentionally skipped and erroneous records.</li>
+</ul>
+
+<h2 id='structure'>Structure</h2>
+
+<p>So far elfstats consists of two main components, namely an aggregation backend and a presentation layer. The backend is implemented in a form of a Linux daemon called <a href='https://github.com/dzzh/elfstatsd'>elfstatsd</a>. This daemon invokes once in a specified time interval, reads log records from the configured log files that were added since the daemon&#8217;s previous run, processes them and writes the results into the report files.</p>
+
+<p>After the data is aggregated and saved, it can be used as the input source by many different monitoring solutions. By now, however, only <a href='http://munin-monitoring.org'>Munin</a> is used for elfstats data visualization. <a href='https://github.com/dzzh/elfstats-munin'>elfstats-munin</a> repository contains a number of Munin plugins that read the data from the report files generated by <em>elfstatsd</em> and convert it into Munin-recognizable format. Several different plugins are available. Each of them can be turned on or off to better fit the administrator&#8217;s needs. These plugins are very simple and allow for easy extension and change. They are based on <a href='http://aouyar.github.io/PyMunin/'>PyMunin</a> framework.</p>
+
+<p>To simplify elfstats deployment for the system engineers not familiar with Python and/or operating web servers with restricted access (e.g. not allowing to download required dependencies from the Internet), an optional <a href='https://github.com/dzzh/elfstats-env'>elfstats-env</a> infrastructural repository is maintained. It contains a Python virtual environment set up to work with elfstats. It can be installed prior to the other elfstats components. However, you are free not to use it and install elfstats the way you want.</p>
+
+<p>The <a href='https://github.com/dzzh/elfstats'>elfstats</a> repository is aimed to be the all-in-one umbrella repository for the project&#8217;s development. So far it only contains the sources of this web site, but in near future it will include all the repositories listed above as its submodules and will contain build scenarios for all-in-one elfstats installation.</p>
+
+<h2 id='okay_got_it_whats_next'>Okay, got it. What&#8217;s next?</h2>
+
+<p>If you want to try elfstats, you need to install its components in the following order:</p>
+
+<ul>
+<li><a href='https://github.com/dzzh/elfstats-env'>elfstats-env</a> (optional)</li>
+
+<li><a href='https://github.com/dzzh/elfstatsd'>elfstatsd</a></li>
+
+<li><a href='https://github.com/dzzh/elfstats-munin'>elfstats-munin</a></li>
+</ul>
+
+<p>The detailed installation instructions are provided in the readme files of the respective repositories. The readme&#8217;s also contain basic configuration guides.</p>
+
+<p>You can also refer to <a href='https://github.com/dzzh/elfstatsd/wiki'>elfstatsd wiki</a> for configuration guide and report format specification and to <a href='https://github.com/dzzh/elfstats-munin/wiki'>elfstats-munin wiki</a> for the description of the available plugins.</p>
+
+<h2 id='support'>Support</h2>
+
+<p>If you have troubles with deploying or configuring elfstats, you may <a href='https://github.com/dzzh/elfstatsd/issues'>file an issue</a> desribing your problem at the issue tracker or <a href='mailto:zmicier.zaleznicenka@gmail.com'>contact a maintainer</a> directly via email. Feel free to share your thoughts and suggestions to improve the project!</p>
       </section>
 
       <footer>        
         <p>Maintained by <a href="https://github.com/dzzh">Źmicier Žaleźničenka</a></p>        
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a><br/>Latest site update: {{ site.time | date: "%Y-%m-%d" }}</p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a><br/>Latest site update: 2013-11-08</p>
       </footer>
     </div>
 
