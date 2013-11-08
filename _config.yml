@@ -1,4 +1,4 @@
-exclude: [CNAME, Gemfile, Gemfile.lock, .gitignore, README.md]
+exclude: [Gemfile, Gemfile.lock, .gitignore]
 gallerytag:
     dir: images
     url: 
