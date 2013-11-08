@@ -16,6 +16,8 @@ Build and launch server: `bundle exec jekyll serve`
 
 Go to `http://localhost:4000`
 
+Because of a bug in a plugin, it may be needed to create `_site/images/` directories manually before building the site. 
+
 ##Deploy to GitHub Pages
 
 * Build site using Jekyll as described above
